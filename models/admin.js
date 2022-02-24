@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../connections/dbconnection");
+const sequelize = require("../config/dbconnection");
 
-class Patient extends Model {}
+class Admin extends Model {}
 
-Patient.init(
+Admin.init(
   {
       id: {
         type: DataTypes.INTEGER,
@@ -25,30 +25,17 @@ Patient.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    gender: {
+    location: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    dob: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    allergies: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-
     }
 
   },
   {
     sequelize,
     freezeTableName: true,
-    modelName: "patient",
+    modelName: "Admin",
   }
 );
 
-module.exports = patient;
+module.exports = Admin;

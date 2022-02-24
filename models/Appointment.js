@@ -41,10 +41,17 @@ Appointment.init(
         len: [1],
       },
     },
+<<<<<<< HEAD
     user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
+=======
+    patient_ID: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Patient',
+>>>>>>> f5d9f60a2f67d6c27aca8d307dccb8026924b427
         key: 'id',
       },
     },
@@ -58,4 +65,8 @@ Appointment.init(
   }
 );
 
+<<<<<<< HEAD
 module.exports = Appointment;
+=======
+module.exports = Appointment;
+>>>>>>> f5d9f60a2f67d6c27aca8d307dccb8026924b427
