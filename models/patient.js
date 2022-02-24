@@ -47,8 +47,8 @@ Patient.init(
   {
     sequelize,
     freezeTableName: true,
-    modelName: "patient",
+    modelName: "Patient",
   }
 );
 
-module.exports = patient;
+module.exports = Patient;
