@@ -43,7 +43,7 @@ Admin.init(
 
     },
 
-  
+
     sequelize,
     freezeTableName: true,
     modelName: "admin",
