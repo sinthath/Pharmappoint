@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/dbconnection');
 
 class Appointment extends Model {}
 
@@ -44,7 +44,11 @@ Appointment.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
+<<<<<<< HEAD
         model: 'Patient',
+=======
+        model: 'user',
+>>>>>>> sajees/branch
         key: 'id',
       },
     },
