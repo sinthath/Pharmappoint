@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/dbconnection');
 
 class Appointment extends Model {}
 
@@ -41,10 +41,10 @@ Appointment.init(
         len: [1],
       },
     },
-    patient_ID: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Patient',
+        model: 'user',
         key: 'id',
       },
     },
