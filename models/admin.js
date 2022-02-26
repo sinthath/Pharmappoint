@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/dbconnection");
+const sequelize = require("../config/connection");
 
 class Admin extends Model {}
 
@@ -16,25 +16,33 @@ Admin.init(
           allowNull: false,
 
       },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+      },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       password: {
           type: DataTypes.STRING,
           allowNull: false,
-      },
-
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
+          validate: {
+            len: [4]
+          }
+      }
 
   },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
-    modelName: "Admin",
+    underscored: true,
+    modelName: "admin",
   }
 );
 
