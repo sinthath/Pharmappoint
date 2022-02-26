@@ -1,6 +1,7 @@
-# Compiled class file
-*.class
+node_modules/
+.env
 
+<<<<<<< HEAD
 # Log file
 *.log
 
@@ -24,3 +25,5 @@ hs_err_pid*
 .env
 .DS_Store
 node_modules
+=======
+>>>>>>> 3804abe6e88db2843bc1b7022fb8245e29ea8ddf
