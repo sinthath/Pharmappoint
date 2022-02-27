@@ -41,10 +41,17 @@ Appointment.init(
         len: [1],
       },
     },
+<<<<<<< HEAD
     User_ID: {
       type: DataTypes.INTEGER,
       references: {
         model: 'User',
+=======
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+>>>>>>> 2495b2a1a41ab7fb1fbdc54c3f0009330eef08b0
         key: 'id',
       },
     },
