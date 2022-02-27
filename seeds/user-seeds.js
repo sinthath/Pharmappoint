@@ -3,21 +3,36 @@ const { User } = require('../models');
 
 const userdata = [
   {
-    firstname: 'Sean',
-    lastname: 'John',
+    admin: false,
     email: 'pdiddy@ciroc.com',
-    username: 'Sean123',
-    password: 'badboyrecords'
+    password: 'Sean123',
+    securityOne: 'badboyrecords',
+    securityTwo: 'password',
+    securityThree: 'basketball',
+    firstName: 'Mike',
+    lastName: 'Jordan',
+    gender: 'Male',
+    age: '55',
+    dob: '10/30/1970',
+    allergies: 'true',
+
   },
   {
-    firstname: 'Jay',
-    lastname: 'Z',
-    email: 'rocnation@nyc.com',
-    username: 'Blueprint',
-    password: 'Beyonce'
+    admin: true,
+    email: 'fakeperson@ciroc.com',
+    password: 'mike123',
+    securityOne: 'youngmoney',
+    securityTwo: 'cashmoney',
+    securityThree: 'throwmoney',
+    firstName: 'lebron',
+    lastName: 'James',
+    gender: 'Male',
+    age: '38',
+    dob: '10/30/1983',
+    allergies: 'false',
   }
 ];
 
-const seedUsers = () => User.bulkCreate(userdata, {individualHooks: true});
+const seedUsers = () => User.bulkCreate(userdata);
 
 module.exports = seedUsers;
