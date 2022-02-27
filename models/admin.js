@@ -50,6 +50,14 @@
 //      securityThree: {
 //       type: DataTypes.STRING,
 //       allowNull: false,
+//     },
+//     location: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     pharmaName: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
 //     }
 //   },
 //   {
