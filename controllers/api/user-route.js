@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require("../../models")
+var db = require("../../models")
 //routes will use /api/User/ {route}
 
 router.post('/', (req, res) => {
