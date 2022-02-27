@@ -1,0 +1,27 @@
+{{> post-info post}}
+
+{{#if loggedIn}}
+<section class="appt">
+    <h2 > Book an Appointment</h2>
+  
+<div class="container mt-5 mb-5" style="width: 400px">
+  <h3 >Appointment Date & Time:</h3>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <button type="button" id="toggle" class="input-group-text"><i class="fa fa-calendar-alt"></i></button>
+    </div>
+  <input type="text" id="picker" class="form-control" placeholder="Select Date and Time">
+  </div>
+</div>
+
+    <button type="submit" class="btn">Submit</button>
+  
+</section>
+
+{{/if}}
+
+{{> comments post.comments}}
+
+{{#if loggedIn}}
+<script src="/js/script.js"></script>
+{{/if}}
