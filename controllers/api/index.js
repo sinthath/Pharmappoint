@@ -7,20 +7,7 @@ const userRoute = require('./user-route');
 
 
 
-
-
-
-
-
-router.use('/user', userRoute);
-
-
-
-
-
-
-
-
+router.use('/api/users', userRoute);
 
 
 
