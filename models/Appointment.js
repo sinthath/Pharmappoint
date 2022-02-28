@@ -44,11 +44,7 @@ Appointment.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-<<<<<<< HEAD
-        model: 'Patient',
-=======
-        model: 'user',
->>>>>>> sajees/branch
+        model: 'User',
         key: 'id',
       },
     },
