@@ -1,14 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "pharmappoint",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-=======
   "scripts": {
     "start": "node server.js",
     "seed": "node seeds/index.js"
@@ -18,7 +8,6 @@
   "version": "1.0.0",
   "main": "app.js",
   "devDependencies": {},
->>>>>>> 2495b2a1a41ab7fb1fbdc54c3f0009330eef08b0
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DahhanCodes/Pharmappoint.git"
@@ -34,11 +23,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mysql2": "^2.3.3",
-<<<<<<< HEAD
-    "passport": "^0.5.2",
-=======
     "nodemon": "^2.0.15",
->>>>>>> 2495b2a1a41ab7fb1fbdc54c3f0009330eef08b0
     "sequelize": "^6.16.3"
   }
 }

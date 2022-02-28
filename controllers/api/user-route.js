@@ -1,8 +1,4 @@
 const router = require('express').Router();
-<<<<<<< HEAD
-var db = require("../../models")
-//routes will use /api/User/ {route}
-=======
 const { User } = require('../../models'); 
 
 
@@ -17,7 +13,6 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
->>>>>>> 2495b2a1a41ab7fb1fbdc54c3f0009330eef08b0
 
 router.post('/', (req, res) => {
   User.findOne({
@@ -47,48 +42,6 @@ router.post('/', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-// router.put('/:id', (req, res) => {
-//     User.update(req.body, {
-//         individualHooks: true,
-//         where: {
-//           id: req.params.id
-//         }
-//       })
-//         .then(dbUserData => {
-//           if (!dbUserData[0]) {
-//             res.status(404).json({ message: 'No user found with this id' });
-//             return;
-//           }
-//           res.json(dbUserData);
-//         })
-//         .catch(err => {
-//           console.log(err);
-//           res.status(500).json(err);
-//         });
-//     });
-
-// //Maybe later
-// router.delete('/:id', (req, res) => {
-//   User.destroy({
-//     where: {
-//       id: req.params.id
-//     }
-//   })
-//     .then(dbUserData => {
-//       if (!dbUserData) {
-//         res.status(404).json({ message: 'No User found with this id!' });
-//         return;
-//       }
-//       res.json(dbUserData);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-//   res.send("this User route was successful (delete)");
-// });
-=======
 router.put('/:id', (req, res) => {
     User.update(req.body, {
         individualHooks: true,
@@ -127,6 +80,5 @@ router.put('/:id', (req, res) => {
             res.status(500).json(err);
           });
       });
->>>>>>> 2495b2a1a41ab7fb1fbdc54c3f0009330eef08b0
 
 module.exports = router;
