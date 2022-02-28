@@ -41,10 +41,10 @@ Appointment.init(
         len: [1],
       },
     },
-    User_ID: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User',
+        model: 'user',
         key: 'id',
       },
     },

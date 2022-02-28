@@ -1,14 +1,13 @@
 const router = require('express').Router();
-const userRoute = require('./user-route.js');
-// const appointmentRoute = require('./appointment-route')
+const userRoute = require('./user-route');
 
 
 
 
 
 
-router.use('/users', userRoute); 
-// router.use('/appointment', appointmentRoute); 
+
+router.use('/api/users', userRoute);
 
 
 
