@@ -9,49 +9,26 @@ class User extends Model {
 }
 
 User.init(
+
   {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      admin:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-
-      },
-      email: {
-          type: DataTypes.STRING,
-          allowNull: false,
-
-      },
-      password: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          validate: {
-              len: [9]
-          }
-          
-      },
-      securityOne: {
-          type: DataTypes.STRING,
-          allowNull: false,
-         
-      },
-      securityTwo: {
-        type: DataTypes.STRING,
-        allowNull: false,
-       
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    securityThree: {
-        type: DataTypes.STRING,
-        allowNull: false,
-       
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [6],
+      },
 
-
-    firstName: {
+      firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -61,21 +38,76 @@ User.init(
         allowNull: false,
       },
 
-    gender: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    dob: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    allergies: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
+
+  // {
+  //     id: {
+  //       type: DataTypes.INTEGER,
+  //       allowNull: false,
+  //       primaryKey: true,
+  //       autoIncrement: true,
+  //     },
+  //     admin:{
+  //       type: DataTypes.BOOLEAN,
+  //       allowNull: false,
+
+  //     },
+  //     email: {
+  //         type: DataTypes.STRING,
+  //         allowNull: false,
+
+  //     },
+  //     password: {
+  //         type: DataTypes.STRING,
+  //         allowNull: false,
+  //         validate: {
+  //             len: [9]
+  //         }
+          
+    //   },
+    //   securityOne: {
+    //       type: DataTypes.STRING,
+    //       allowNull: false,
+         
+    //   },
+    //   securityTwo: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+       
+    // },
+    // securityThree: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+       
+    // },
+
+
+    // firstName: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+
+    // lastName: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //   },
+
+    // gender: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // age: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
+    // dob: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    // },
+    // allergies: {
+    //     type: DataTypes.BOOLEAN,
+    //     allowNull: false,
+
+ 
 
     }
 
