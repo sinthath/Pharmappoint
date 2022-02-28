@@ -1,6 +1,18 @@
 const router = require('express').Router();
-const { User } = require("../../models")
-//routes will use /api/User/ {route}
+const { User } = require('../../models'); 
+
+
+// get all users
+router.get('/', (req, res) => {
+    User.findAll({
+      attributes: { exclude: ['password'] }
+    })
+      .then(dbUserData => res.json(dbUserData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 router.post('/', (req, res) => {
   User.findOne({
@@ -50,25 +62,23 @@ router.put('/:id', (req, res) => {
         });
     });
 
-//Maybe later
-router.delete('/:id', (req, res) => {
-  User.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbUserData => {
-      if (!dbUserData) {
-        res.status(404).json({ message: 'No User found with this id!' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-  res.send("this User route was successful (delete)");
-});
+    router.delete('/:id', (req, res) => {
+        User.destroy({
+          where: {
+            id: req.params.id
+          }
+        })
+          .then(dbUserData => {
+            if (!dbUserData) {
+              res.status(404).json({ message: 'No user found with this id' });
+              return;
+            }
+            res.json(dbUserData);
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+          });
+      });
 
 module.exports = router;

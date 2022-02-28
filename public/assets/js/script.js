@@ -3,23 +3,21 @@ $.datetimepicker.setDateFormatter('moment')
 $('#picker').datetimepicker({
     timepicker: true, 
     datepicker: true, 
+    minDate: 1,
+    // maxDate: 
+    closeOnDateSelect:true,
+    daysOfWeekDisabled: [0],
     format: 'YYYY-MM-DD h:mm a', 
-    daysOfWeekDisabled: [0, 6],
+
+    
     allowTimes: ['10:00', '11:00', '13:00', '14:00', '15:00']
 })
+
 
 $('#toggle').on('click', function(){
     $('#picker').datetimepicker('toggle')
 })
 
-function noWeekends(date) {
-    var noWeekend = $.datepicker.noWeekends(date);
-    if (noWeekend[0]) {
-        return nationalDays(date);
-    } else {
-        return noWeekend;
-    }
-}
 
 
 
