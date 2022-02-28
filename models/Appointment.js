@@ -44,7 +44,7 @@ Appointment.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'User',
+        model: 'user',
         key: 'id',
       },
     },
@@ -54,7 +54,7 @@ Appointment.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Appointments',
+    modelName: 'appointments',
   }
 );
 

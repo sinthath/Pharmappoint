@@ -1,28 +1,27 @@
 const path = require('path');
 const express = require('express');
-const passport = require('passport');
-const session = require('express-session');
-
 const app = express();
+//const passport = require('passport');
+//const session = require('express-session');
+
 const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/dbconnection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// Passport
-const sess = {
-  secret: 'Super secret secret',
-  cookie: {},
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize
-  })
-};
+// // Passport
+// const sess = {
+//   secret: 'Super secret secret',
+//   cookie: {},
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new SequelizeStore({
+//     db: sequelize
+//   })
+// };
 
-app.use(session(sess));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Models
 //const models = require('./models');
