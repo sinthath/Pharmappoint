@@ -4,25 +4,24 @@ const Time = require('./Time');
 
 Appointment.belongsTo(User, {
   foreignKey: 'user_id',
-  onDelete: 'cascade',
+  onDelete: 'SET NULL',
 });
 
 User.hasMany(Appointment, {
   foreignKey: 'user_id',
-  onDelete: 'cascade',
+  onDelete: 'SET NULL',
 });
 
 Time.hasMany(Appointment, {
   foreignKey: 'Appointments_time',
-  onDelete: 'cascade',
+  // onDelete: 'SET NULL',
 });
 Appointment.belongsTo(Time, {
   foreignKey: 'Appointments_time',
-  onDelete: 'cascade',
+  // onDelete: 'SET NULL',
 });
 
 module.exports = { User, Appointment, Time };
-
 
 
 

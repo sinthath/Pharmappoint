@@ -4,6 +4,9 @@ const { Time } = require('../models');
 
 const userdata = [
     {
+        time: '9:00'
+    },
+    {
         time: '10:00'
     },
     {
@@ -20,6 +23,12 @@ const userdata = [
     },
     {
         time: '3:00'
+    },
+    {
+        time: '4:00'
+    },
+    {
+        time: '5:00'
     },
   ];
   
