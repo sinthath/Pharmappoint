@@ -5,14 +5,12 @@ router.post('/', (req, res) => {
   const {
     Appointments_time,
     Appointments_date,
-    Appointments_day,
     Appointments_type,
     user_id,
   } = req.body;
   const appointments = Appointment.create({
     Appointments_time: Appointments_time,
     Appointments_date: Appointments_date,
-    Appointments_day: Appointments_day,
     Appointments_type: Appointments_type,
     user_id,
   })
@@ -28,3 +26,4 @@ router.put('/', (req, res) => {
   res.send('this Schedule route was successful (put)');
 });
 
+module.exports = router;
