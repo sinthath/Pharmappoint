@@ -57,25 +57,12 @@ router.get('/:id', (req, res) => {
 
 //Create an Appointment
 router.post('/', (req, res) => {
-
   Appointment.create({
-    Appointments_time: req.body.appointments_time,
-    Appointments_date: req.body.appointments_date,
-    Appointments_type: req.body.appointments_type,
+    Appointments_time: req.body.Appointments_time,
+    Appointments_date: req.body.Appointments_date,
+    Appointments_type: req.body.Appointments_type,
   })
-  .then(dbAppointmentData => {
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.appointments_time = dbAppointmentData.appointments_time;
-      req.session.date = dbAppointmentData.appointments_date;
-      req.session.type = dbAppointmentData.appointments_type; 
-
-      req.session.loggedIn = true;
-
-      res.json(dbAppointmentData);
-
-    });
-  })
+  .then(dbAppointmentData => res.json(dbAppointmentData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -86,9 +73,10 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Appointment.update(
       {
-        Appointments_time: req.body.appointments_time,
-        Appointments_date: req.body.appointments_date,
-        Appointments_type: req.body.appointments_type,
+        Appointments_time: req.body.Appointments_time,
+        Appointments_date: req.body.Appointments_date,
+        Appointments_type: req.body.Appointments_type,
+
       },
       {
           where: {
