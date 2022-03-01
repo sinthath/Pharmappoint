@@ -61,17 +61,14 @@ router.post('/', (req, res) => {
   Appointment.create({
     Appointments_time: req.body.appointments_time,
     Appointments_date: req.body.appointments_date,
-    Appointments_day: req.body.appointments_day,
-    Appointments_text: req.body.appointments_text,
-    Appointments_type: req.body.appointments_type
+    Appointments_type: req.body.appointments_type,
   })
   .then(dbAppointmentData => {
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.appointments_time = dbAppointmentData.appointments_time;
       req.session.date = dbAppointmentData.appointments_date;
-      req.session.day = dbAppointmentData.appointments_day;
-      req.session.text = dbAppointmentData.appointments_text;
+      req.session.type = dbAppointmentData.appointments_type; 
 
       req.session.loggedIn = true;
 
