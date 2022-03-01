@@ -26,9 +26,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// Models
-//const models = require('./models');
-
 // Express static assets
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

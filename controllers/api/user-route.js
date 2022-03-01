@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       });
   });
 
-// get a single user
+// Get a single user
 router.get('/:id', (req, res) => {
   User.findOne({
       attributes: { exclude: ['password'] },
@@ -36,15 +36,14 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a new user
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
   User.create({
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
-
-
+    
   })
     .then(dbUserData => {
       req.session.save(() => {
@@ -65,7 +64,8 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+// Login route 
+router.post('/login', (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
@@ -93,6 +93,18 @@ router.post('/', (req, res) => {
   });
 });
 
+// Logout Route
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+     req.session.destroy(() => {
+        res.status(204).end();
+     });
+  } else {
+     res.status(404).end();
+  }
+});
+
+// User Update 
 router.put('/:id', (req, res) => {
     User.update(req.body, {
         individualHooks: true,
@@ -102,7 +114,7 @@ router.put('/:id', (req, res) => {
       })
         .then(dbUserData => {
           if (!dbUserData[0]) {
-            res.status(404).json({ message: 'No user found with this id' });
+            res.status(404).json({ message: 'No user found' });
             return;
           }
           res.json(dbUserData);
@@ -113,7 +125,8 @@ router.put('/:id', (req, res) => {
         });
     });
 
-    router.delete('/:id', (req, res) => {
+  // Delete User
+  router.delete('/:id', (req, res) => {
         User.destroy({
           where: {
             id: req.params.id
@@ -121,7 +134,7 @@ router.put('/:id', (req, res) => {
         })
           .then(dbUserData => {
             if (!dbUserData) {
-              res.status(404).json({ message: 'No user found with this id' });
+              res.status(404).json({ message: 'No user found' });
               return;
             }
             res.json(dbUserData);
