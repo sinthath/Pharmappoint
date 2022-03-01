@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <title>PharmAppoint Home</title>
 </head>
 
 <body>
@@ -13,14 +13,13 @@
     <header>
       <h1>PharmAppoint</h1>
 
-      <!-- <nav>
+      <nav>
      
-        <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-      </nav> -->
+        <a href="./adminlogin.html">Admin</a>
+        
+      </nav>
     </header>
       
-
     
     <main>
         <section>
@@ -28,7 +27,7 @@
             <a href="/login">Sign in </a>
         </section>
 
-        <form class="login-form">
+        <form class="userlogin-form">
           <div>
             <label for="username-login">username:</label>
             <input type="text" id="username-login" />
@@ -38,17 +37,17 @@
             <input type="password" id="password-login" />
           </div>
           <div>
-            <button type="submit">login</button>
+            <button id="user-btn"type="submit">login</button>
           </div>
         </form>
         <section>
 
-            <a href="">Forgot Password/Username</a>
+            <a href="./reset.html">Forgot Password/Username</a>
         </section>
 
         <section>
 
-          <a href="">Create a New Account</a>
+          <a href="./createuserlogin.html">Create a New Account</a>
       </section>
       
     </main>
@@ -58,7 +57,7 @@
   </div>
   
  
-  <script src="/javascript/logout.js"></script>
+  <script src="/javascript/userlogin.js"></script>
 
 </body>
 
