@@ -1,6 +1,4 @@
-
-
-    $(function() {
+ $(function() {
         $( "#datepicker-1" ).datepicker({
             appendText:"(yy-mm-dd)",
             dateFormat:"yy-mm-dd",

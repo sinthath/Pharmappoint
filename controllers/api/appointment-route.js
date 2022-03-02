@@ -1,63 +1,112 @@
 const router = require('express').Router();
-const { User } = require("../../models")
-router.post('/', (req, res) => {
-  User.findOne({
-    where: {
-      email: req.body.email
-    }
-  }).then(dbUserData => {
-    if (!dbUserData) {
-      res.status(400).json({ message: 'No user with that email address!' });
-      return;
-    }
-    const validPassword = dbUserData.checkPassword(req.body.password);
-    if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password!' });
-      return;
-    }
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.loggedIn = true;
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
+const { Appointment, Time, User } = require('../../models');
+// get all appointments
+router.get('/', (req, res) => {
+  Appointment.findAll({
+     attributes: ['Appointments_time', 'Appointments_date', 'Appointments_type'],
+     include: [
+        {
+           model: User,
+           attributes: ['Username'],
+        },
+        {
+          model: Time,
+          attributes: ['time']
+        },
+     ],
+    })
+    .then(dbAppointmentData => res.json(dbAppointmentData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
     });
+});
+// Get an appointment
+router.get('/:id', (req, res) => {
+  Appointment.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: ['Appointments_time', 'Appointments_date', 'Appointments_type'],
+      include: [
+        {
+           model: User,
+           attributes: ['Username'],
+        },
+        {
+          model: Time,
+          attributes: ['time']
+        },
+     ],
+    })
+    .then(dbAppointmentData => {
+      if (!dbAppointmentData) {
+        res.status(404).json({ message: 'No Appointments were found' });
+        return;
+      }
+      res.json(dbAppointmentData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+//Create an Appointment
+router.post('/', (req, res) => {
+  Appointment.create({
+    Appointments_time: req.body.Appointments_time,
+    Appointments_date: req.body.Appointments_date,
+    Appointments_type: req.body.Appointments_type,
+  })
+  .then(dbAppointmentData => res.json(dbAppointmentData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
   });
 });
+// Update an Appointment
 router.put('/:id', (req, res) => {
-    User.update(req.body, {
-        individualHooks: true,
-        where: {
-          id: req.params.id
-        }
-      })
-        .then(dbUserData => {
-          if (!dbUserData[0]) {
-            res.status(404).json({ message: 'No user found with this id' });
-            return;
-          }
-          res.json(dbUserData);
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-        });
-    });
-    router.delete('/:id', (req, res) => {
-        User.destroy({
+  Appointment.update(
+      {
+        Appointments_time: req.body.Appointments_time,
+        Appointments_date: req.body.Appointments_date,
+        Appointments_type: req.body.Appointments_type,
+      },
+      {
           where: {
-            id: req.params.id
+              id: req.params.id
           }
-        })
-          .then(dbUserData => {
-            if (!dbUserData) {
-              res.status(404).json({ message: 'No user found with this id' });
-              return;
-            }
-            res.json(dbUserData);
-          })
-          .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-          });
-      });
+      }
+  )
+  .then(dbAppointmentData => {
+      if(!dbAppointmentData) {
+          res.status(404).json({ message: 'No Appointment was found'});
+          return;
+  }
+  res.json(dbAppointmentData);
+  })  
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+});
+// Delete an Appointment
+router.delete('/:id', (req, res) => {
+  Appointment.destroy({
+      where: {
+          id: req.params.id
+      }
+  })
+  .then(dbAppointmentData => {
+      if(!dbAppointmentData) {
+          res.status(404).json({ message: 'No Appointment was found'});
+          return;
+  }
+  res.json(dbAppointmentData);
+  })  
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+});
 module.exports = router;

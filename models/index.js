@@ -21,4 +21,4 @@ Appointment.belongsTo(Time, {
   // onDelete: 'SET NULL',
 });
 
-module.exports = { User };
+module.exports = { User, Time, Appointment };
