@@ -23,17 +23,6 @@ Appointment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Appointments_day: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Appointments_text: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
     Appointments_type: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -59,3 +48,4 @@ Appointment.init(
 );
 
 module.exports = Appointment;
+
