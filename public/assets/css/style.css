@@ -8,6 +8,10 @@
     margin: 0;
     font-family: sans-serif;
     color: #333;
+    background-image: url('../../images/image\ \(1\).png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
   }
   
   a {
