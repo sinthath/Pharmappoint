@@ -9,10 +9,12 @@ const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/dbconnection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+var htmlRoutes = require("./controllers/html-routes");
+var apiRoutes = require("./controllers/api");
 
 // Passport
 const sess = {
-  secret: 'Super secret secret',
+  secret: 'shhh',
   cookie: {},
   resave: false,
   saveUninitialized: true,
@@ -29,11 +31,11 @@ app.use(passport.session());
 // Express static assets
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static("public"));
 
 // Routes
-app.use(require('./controllers/api'));
-
+app.use(htmlRoutes);
+app.use(apiRoutes)
 // Sync Database
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));

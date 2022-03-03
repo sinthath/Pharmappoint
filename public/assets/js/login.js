@@ -1,20 +1,40 @@
-const loginFormHandler = async (event) => {
-    event.preventDefault();
-    const email = document.querySelector('#username-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-    if (email && password) {
-          const response = await fetch('/api/users/login', {
-                method: 'POST',
-                body: JSON.stringify({ email, password }),
-                headers: { 'Content-Type': 'application/json' },
+$(document).ready(function() {
+      // Getting references to our form and inputs
+      var loginForm = $(".login-form");
+      var emailInput = $("#username-login");
+      var passwordInput = $("#password-login");
+    
+      // When the form is submitted, we validate there's an email and password entered
+      loginForm.on("submit", function(event) {
+        event.preventDefault();
+        var userData = {
+          email: emailInput.val().trim(),
+          password: passwordInput.val().trim()
+        };
+    
+        if (!userData.email || !userData.password) {
+          return;
+        }
+    
+        // If we have an email and password we run the loginUser function and clear the form
+        loginUser(userData.email, userData.password);
+        emailInput.val("");
+        passwordInput.val("");
+      });
+    
+      // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+      function loginUser(email, password) {
+        $.post("/api/login", {
+          email: email,
+          password: password
+        })
+          .then(function() {
+            window.location.replace("/appointment");
+            // If there's an error, log the error
+          })
+          .catch(function(err) {
+            console.log(err);
           });
-          if (response.ok) {
-                document.location.replace('/appointment.html');
-          } else {
-                alert('Failed to log in.');
-          }
-    }
-};
-document
-    .querySelector('.login-form')
-    .addEventListener('submit', loginFormHandler);
+      }
+    });
+    

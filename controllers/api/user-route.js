@@ -37,7 +37,6 @@ router.get('/:id', (req, res) => {
 // Create a new user
 router.post('/', (req, res) => {
   User.create({
-    username: req.body.username,
     password: req.body.password,
     email: req.body.email,
     firstname: req.body.firstname,
@@ -47,7 +46,7 @@ router.post('/', (req, res) => {
     .then(dbUserData => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
+        
         req.session.email = dbUserData.email;
         req.session.firstname = dbUserData.firstname;
         req.session.lastname = dbUserData.lastname;
@@ -64,7 +63,7 @@ router.post('/', (req, res) => {
 });
 
 // Login route 
-router.post('/login', (req, res) => {
+router.post("/api/login", (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
@@ -84,7 +83,7 @@ router.post('/login', (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
+      req.session.email = dbUserData.email;
       req.session.loggedIn = true;
 
       res.json({ user: dbUserData, message: 'You are now logged in!' });

@@ -1,20 +1,44 @@
-const router = require("express").Router();
-
-var path = require("path");
-
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-      res.redirect('/');
-      return; //if person is logged in, redirect to home page.
-  }
-  res.render('login'); //if not, render the login page.
+const path = require("path");
+const router = require('express').Router();
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-router.get('/signup', (req, res) => {
-  res.render('signup');
-}); //If you click the signup link it takes you to the handlebars signup page!
+router.post('/api/login', (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(dbUserData => {
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
 
-router.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../public/index.html"));
+    const validPassword = dbUserData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+  });
 });
-module.exports = router;
+module.exports = router
+
+
+
+// router.get('/login', (req, res) => {
+//   if (req.session.loggedIn) {
+//     res.redirect('/');
+//     return;
+//   }
+//   res.sendFile((path.join(__dirname, "../public/appointment.html"))
+// });
