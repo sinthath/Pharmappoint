@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/dbconnection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-var htmlRoutes = require("./controllers/html-routes");
-var apiRoutes = require("./controllers/api");
+// var htmlRoutes = require("./controllers/html-routes");
+// var apiRoutes = require("./controllers/api");
 
 // Passport
 const sess = {
@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 // Routes
+app.use(require('./controllers/'));
 app.use(htmlRoutes);
 app.use(apiRoutes)
 // Sync Database
