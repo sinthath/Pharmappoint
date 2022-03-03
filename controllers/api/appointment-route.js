@@ -1,15 +1,16 @@
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { Appointment, Time, User } = require('../../models');
 
 // get all appointments
 router.get('/', (req, res) => {
   Appointment.findAll({
 
-     attributes: ['Appointments_time', 'Appointments_date', 'Appointments_day', 'Appointments_text', 'Appointments_type'],
+     attributes: ['Appointments_time', 'Appointments_date', 'Appointments_type'],
      include: [
         {
            model: User,
-           attributes: ['Username'],
+           attributes: ['email'],
         },
         {
           model: Time,
@@ -30,11 +31,11 @@ router.get('/:id', (req, res) => {
       where: {
         id: req.params.id
       },
-      attributes: ['Appointments_time', 'Appointments_date', 'Appointments_day', 'Appointments_text', 'Appointments_type'],
+      attributes: ['Appointments_time', 'Appointments_date', 'Appointments_type'],
       include: [
         {
            model: User,
-           attributes: ['Username'],
+           attributes: ['email'],
         },
         {
           model: Time,
@@ -57,28 +58,12 @@ router.get('/:id', (req, res) => {
 
 //Create an Appointment
 router.post('/', (req, res) => {
-
   Appointment.create({
-    Appointments_time: req.body.appointments_time,
-    Appointments_date: req.body.appointments_date,
-    Appointments_day: req.body.appointments_day,
-    Appointments_text: req.body.appointments_text,
-    Appointments_type: req.body.appointments_type
+    Appointments_time: req.body.Appointments_time,
+    Appointments_date: req.body.Appointments_date,
+    Appointments_type: req.body.Appointments_type,
   })
-  .then(dbAppointmentData => {
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.appointments_time = dbAppointmentData.appointments_time;
-      req.session.date = dbAppointmentData.appointments_date;
-      req.session.day = dbAppointmentData.appointments_day;
-      req.session.text = dbAppointmentData.appointments_text;
-
-      req.session.loggedIn = true;
-
-      res.json(dbAppointmentData);
-
-    });
-  })
+  .then(dbAppointmentData => res.json(dbAppointmentData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -89,9 +74,10 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Appointment.update(
       {
-        Appointments_time: req.body.appointments_time,
-        Appointments_date: req.body.appointments_date,
-        Appointments_type: req.body.appointments_type,
+        Appointments_time: req.body.Appointments_time,
+        Appointments_date: req.body.Appointments_date,
+        Appointments_type: req.body.Appointments_type,
+
       },
       {
           where: {

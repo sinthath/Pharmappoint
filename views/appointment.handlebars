@@ -1,0 +1,60 @@
+<body>
+    <div class="calendar" id="calendar">
+      <div class="container">
+        <div
+          class="calendar-btn month-btn"
+          onclick="$('#months').toggle('fast')"
+        >
+          <span id="curMonth"></span>
+          <div id="months" class="months dropdown"></div>
+        </div>
+
+        <div class="calendar-btn modal-btn">
+          <div id="myBtn">PharmAppoint Book Appt</div>
+          <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h1>Appointments for <span id="back-date">{{userSomething.firstname}}</span></h1>
+                {{#each appointments}}
+                  <div class="container" id={{id}}>
+                    <div>
+                      <p>
+                        <span class="Appointments_date">{{Appointments_date}}</span> |
+                        <span class="Appointments_time">{{Appointments_time}}:00</span> |
+                        <span class="Appointments_type">{{Appointments_type}}</span>
+                      </p>
+                    </div>
+                  <div>
+                    <button id="submit-{{id}}" type="submit">Add</button>
+                  </div>
+                  </div>
+                {{/each}}
+            </div>
+          </div>
+        </div>
+
+        <div class="calendar-btn year-btn" onclick="$('#years').toggle('fast')">
+          <span id="curYear"></span>
+          <div id="years" class="years dropdown"></div>
+        </div>
+      </div>
+
+
+    <h3>Book an Appointment</h3>
+     <form>
+        <input type="radio" id="covidtest" name="appt_type" value="covidtest">
+        <label for="covidtest">COVID Test</label><br>
+        <input type="radio" id="covidshot" name="appt_type" value="CSS">
+        <label for="covidshot">COVID Shot</label><br>
+        <input type="radio" id="flushot" name="appt_type" value="flushot">
+        <label for="flushot">FLU Shot</label>
+      </form>
+  </body>
+
+  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+<script src="/javascript/calendar.js"></script>
+<script src="/javascript/appointments.js"></script>
