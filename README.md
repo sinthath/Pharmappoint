@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 ## Project Title: 
 <h1 align="center">PharmaAppoint </h1>
 
