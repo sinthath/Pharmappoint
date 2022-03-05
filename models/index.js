@@ -1,22 +1,27 @@
-<<<<<<< HEAD
-const Admin = require('./Admin');
 
-// User.hasMany(Appointment, {
-//     foreignKey: 'user_id',
-//     onDelete: 'SET NULL'
-//   });
-
-
-
-
-
-
-module.exports = { Admin }
-=======
+   
 const User = require('./User');
+const Appointment = require('./Appointment');
+const Time = require('./Time');
 
+Appointment.belongsTo(User, {
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL',
+});
 
+User.hasMany(Appointment, {
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL',
+});
 
+Time.hasMany(Appointment, {
+  foreignKey: 'Appointments_time',
+  // onDelete: 'SET NULL',
+});
+Appointment.belongsTo(Time, {
+  foreignKey: 'Appointments_time',
+  // onDelete: 'SET NULL',
+});
 
-module.exports = { User };
->>>>>>> 2495b2a1a41ab7fb1fbdc54c3f0009330eef08b0
+module.exports = { User, Time, Appointment };
+
