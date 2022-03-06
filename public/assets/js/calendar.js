@@ -1,10 +1,17 @@
 // to get data from radio button 
-const typeAppt = $("input[type='radio'][name='appt_type']:checked").val();
-// to get data  from option time 
-const timeAppt = $('#selecttime').find(":selected").text();
-var selectedDate;
 
-function selectDate(){
+var typeAppt
+ $(".choice").on('click', function(){
+     console.log(this["value"])
+    typeAppt= this["value"];
+});
+console.log(typeAppt)
+// to get data  from option time 
+var timeAppt = $('#selecttime').find(":selected").text();
+var selectedDate;
+var apptToPost
+var submit = document.getElementById("crtAppt");
+function laodDatePicker(){
     $( "#datepicker-1" ).datepicker({
         appendText:"(yy-mm-dd)",
         dateFormat:"yy-mm-dd",
@@ -19,19 +26,49 @@ function selectDate(){
          }
     });
     $( "#datepicker-1" ).datepicker("setDate", "+1");
+
+};
+ $(document).ready(laodDatePicker);
+ 
+
+ function postApptToDB(appt) {
+    console.log(`STEP 1: POST: /appointment/create `);
+    console.log(appt);
+    fetch('/appointment/create', {
+      method: 'post',
+      body: JSON.stringify({ 
+                  Appointments_time: appt.Appointments_time,
+                  Appointments_date: appt.Appointments_date,
+                  Apoointments_type: appt.Apoointments_type
+                  
+                }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+};
     $("#datepicker-1").on("change",function(){
         selectedDate = $(this).val();
         console.log(selectedDate); 
-        document.getElementById("pickedDate").innerHTML = selectedDate;
-        console.log(selectedDate)
+        
     });
    console.log(selectedDate);
-};
- $(document).ready(selectDate);
+submit.addEventListener("click", function addAppt (event) {
+    event.preventDefault();
+     console.log("clicked")
+    var apptDate = selectedDate;
+    var apptType = typeAppt;
+    var apptTime = timeAppt;
+    apptToPost = {
+      time: apptTime,
+      date: apptDate,
+      type: apptType
+      
+}
+console.log(apptToPost)
+    if (apptToPost.date === undefined || apptToPost.type === undefined || apptToPost.time === undefined) {
+        alert ("please fill out the form")
+        
+      }
  
-
-    // const response = fetch('/api/appointments', {
-    //       method: 'POST',
-    //       body: JSON.stringify({ selectedDate}),
-    //       headers: { 'Content-Type': 'application/json' },
-    // });
+  postApptToDB(apptToPost)
+  document.getElementById("pickedDate").innerHTML= selectedDate;
+});

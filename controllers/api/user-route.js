@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a new user
-router.post('/api/users', (req, res) => {
+router.post('/signUp', (req, res) => {
   
   User.create({
     password: req.body.password,

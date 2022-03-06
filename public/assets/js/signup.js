@@ -29,9 +29,9 @@ console.log(userToPost.first)
     // const question3 = document.querySelector('#question3-signup').value.trim();
   
     function postUserToDB(user) {
-      console.log(`STEP 1: POST: /api/users `);
+      console.log(`STEP 1: POST: /api/signUp `);
       console.log(user);
-      fetch('/api/users', {
+      fetch('/api/signUp', {
         method: 'post',
         body: JSON.stringify({
           firstname: user.firstname,

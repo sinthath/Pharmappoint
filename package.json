@@ -1,5 +1,4 @@
 {
-
   "name": "pharmappoint",
   "version": "1.0.0",
   "description": "",
@@ -9,10 +8,6 @@
     "start": "node server.js",
     "seed": "node seeds/index.js"
   },
-  "name": "pharmappoint",
-  "description": "",
-  "version": "1.0.0",
-  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DahhanCodes/Pharmappoint.git"
@@ -33,5 +28,6 @@
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "sequelize": "^6.17.0"
-  }
+  },
+  "devDependencies": {}
 }

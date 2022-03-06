@@ -53,13 +53,27 @@ router.get('/:id', (req, res) => {
     });
 });
 //Create an Appointment
-router.post('/', (req, res) => {
+router.post('/create', (req, res) => {
+  console.log("here")
+ 
   Appointment.create({
-    Appointments_time: req.body.Appointments_time,
+    
     Appointments_date: req.body.Appointments_date,
     Appointments_type: req.body.Appointments_type,
   })
-  .then(dbAppointmentData => res.json(dbAppointmentData))
+  console.log("saved the appt in the db")
+  .then(dbAppointmentData => { 
+    console.log(dbAppointmentData)
+    req.session.save(() => {
+      req.session.Appointments_time = dbAppointmentData.time;
+      
+      req.session.Appointments_date = dbAppointmentData.date;
+      req.session.Appointments_type = dbAppointmentData.type;
+
+      res.json(dbAppointmentData);
+
+    })
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
