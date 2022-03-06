@@ -3,7 +3,15 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+router.get('/appointmentPage', (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  res.sendFile((path.join(__dirname, "../public/views/appointment.html")))
+});
 
+module.exports= router;
 // router.post('/api/login', (req, res) => {
 //   User.findOne({
 //     where: {
@@ -35,10 +43,4 @@ router.get('/', (req, res) => {
 
 
 
-// router.get('/login', (req, res) => {
-//   if (req.session.loggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
-//   res.sendFile((path.join(__dirname, "../public/appointment.html"))
-// });
+// 

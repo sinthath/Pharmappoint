@@ -36,6 +36,7 @@ router.get('/:id', (req, res) => {
 
 // Create a new user
 router.post('/api/users', (req, res) => {
+  
   User.create({
     password: req.body.password,
     email: req.body.email,
@@ -63,7 +64,8 @@ router.post('/api/users', (req, res) => {
 });
 
 // Login route 
-router.post("/api/login", (req, res) => {
+router.post("/login", (req, res) => {
+  console.log(req.body)
   User.findOne({
     where: {
       email: req.body.email
@@ -73,8 +75,13 @@ router.post("/api/login", (req, res) => {
       res.status(400).json({ message: 'No user with that email address!' });
       return;
     }
-
-    const validPassword = dbUserData.checkPassword(req.body.password);
+    console.log(dbUserData)
+    var validPassword;
+    if (req.body.password === dbUserData.dataValues.password){
+      validPassword = true;
+    }else{
+      validPassword = false;
+    }
 
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });

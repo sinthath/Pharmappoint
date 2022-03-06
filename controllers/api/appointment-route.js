@@ -3,7 +3,7 @@ const { Appointment, Time, User } = require('../../models');
 // get all appointments
 router.get('/', (req, res) => {
   Appointment.findAll({
-     attributes: ['Appointments_time', 'Appointments_date', 'Appointments_type'],
+     attributes: ['Appointments_date'],
      include: [
         {
            model: User,
@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
 // Get an appointment
 router.get('/:id', (req, res) => {
   Appointment.findOne({
