@@ -68,7 +68,7 @@ console.log(apptToPost)
   document.getElementById("pickedType").innerHTML= typeAppt;
 });
 
-$("#hide-btn").on('submit',function deleteAppointment(index){
+$("#hide-btn").on('click',function deleteAppointment(index){
   
     fetch("/appointment/delete/"+ index, {
         method: 'DELETE',
