@@ -16,6 +16,15 @@ Appointment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    
+    Appointments_type: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    Appointments_time:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {

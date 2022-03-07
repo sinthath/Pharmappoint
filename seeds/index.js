@@ -7,7 +7,7 @@ const sequelize = require('../config/dbconnection');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   await seedUsers();
-  await seedTime();
+  // await seedTime();
   await seedAppointments();
   process.exit(0);
 };

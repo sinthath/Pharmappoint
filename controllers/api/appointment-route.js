@@ -55,25 +55,23 @@ router.get('/:id', (req, res) => {
 //Create an Appointment
 router.post('/create', (req, res) => {
   console.log("here")
- 
+  console.log(req.body)
   Appointment.create({
-    
+    Appointments_time: req.body.Appointments_time,
     Appointments_date: req.body.Appointments_date,
     Appointments_type: req.body.Appointments_type,
+    user_id: req.session.user_id
   })
-  console.log("saved the appt in the db")
-  .then(dbAppointmentData => { 
-    console.log(dbAppointmentData)
-    req.session.save(() => {
-      req.session.Appointments_time = dbAppointmentData.time;
-      
-      req.session.Appointments_date = dbAppointmentData.date;
-      req.session.Appointments_type = dbAppointmentData.type;
+  .then(dbAppointmentData => {
+      console.log("saved the appt in the db")
+      console.log(req.session)
+      console.log(dbAppointmentData)
+      req.session.save(() => {
+        req.session.user_id = dbAppointmentData.user_id;
+        res.json(dbAppointmentData);
 
-      res.json(dbAppointmentData);
-
+      })
     })
-  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);

@@ -12,13 +12,13 @@ User.hasMany(Appointment, {
   onDelete: 'SET NULL',
 });
 
-Time.hasMany(Appointment, {
-  foreignKey: 'Appointments_time',
-  // onDelete: 'SET NULL',
-});
-Appointment.belongsTo(Time, {
-  foreignKey: 'Appointments_time',
-  // onDelete: 'SET NULL',
-});
+// Time.hasMany(Appointment, {
+//   foreignKey: 'Appointments_time',
+//   onDelete: 'SET NULL',
+// });
+// Appointment.belongsTo(Time, {
+//   foreignKey: 'Appointments_time',
+//   onDelete: 'SET NULL',
+// });
 
 module.exports = { User, Time, Appointment };

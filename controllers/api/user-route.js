@@ -35,10 +35,10 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a new user
-router.post('/signUp', (req, res) => {
+router.post("/signUp", (req, res) => {
   
   User.create({
-    password: req.body.password,
+    password: req.session.password,
     email: req.body.email,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -51,6 +51,7 @@ router.post('/signUp', (req, res) => {
         req.session.email = dbUserData.email;
         req.session.firstname = dbUserData.firstname;
         req.session.lastname = dbUserData.lastname;
+        req.session.password = dbUserData.password;
         req.session.loggedIn = true;
 
         res.json(dbUserData);

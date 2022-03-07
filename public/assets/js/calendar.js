@@ -1,6 +1,7 @@
 // to get data from radio button 
 
 var typeAppt
+
  $(".choice").on('click', function(){
      console.log(this["value"])
     typeAppt= this["value"];
@@ -31,22 +32,16 @@ function laodDatePicker(){
  $(document).ready(laodDatePicker);
  
 
- function postApptToDB(appt) {
+ function postApptToDB(date, type, time) {
     console.log(`STEP 1: POST: /appointment/create `);
-    console.log(appt);
-    fetch('/appointment/create', {
-      method: 'post',
-      body: JSON.stringify({ 
-                  Appointments_time: appt.Appointments_time,
-                  Appointments_date: appt.Appointments_date,
-                  Apoointments_type: appt.Apoointments_type
-                  
-                }),
-      headers: { 'Content-Type': 'application/json' },
+    $.post('/appointment/create', {
+        Appointments_date: date,
+        Appointments_type: type,
+        Appointments_time: time
     })
 };
     $("#datepicker-1").on("change",function(){
-        selectedDate = $(this).val();
+        selectedDate = this["value"];
         console.log(selectedDate); 
         
     });
@@ -54,13 +49,10 @@ function laodDatePicker(){
 submit.addEventListener("click", function addAppt (event) {
     event.preventDefault();
      console.log("clicked")
-    var apptDate = selectedDate;
-    var apptType = typeAppt;
-    var apptTime = timeAppt;
     apptToPost = {
-      time: apptTime,
-      date: apptDate,
-      type: apptType
+      date: selectedDate,
+      type: typeAppt,
+      time: timeAppt
       
 }
 console.log(apptToPost)
@@ -69,6 +61,6 @@ console.log(apptToPost)
         
       }
  
-  postApptToDB(apptToPost)
+  postApptToDB( apptToPost.date, apptToPost.type, apptToPost.time )
   document.getElementById("pickedDate").innerHTML= selectedDate;
 });
