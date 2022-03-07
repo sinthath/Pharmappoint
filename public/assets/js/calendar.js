@@ -62,5 +62,59 @@ console.log(apptToPost)
       }
  
   postApptToDB( apptToPost.date, apptToPost.type, apptToPost.time )
+
   document.getElementById("pickedDate").innerHTML= selectedDate;
+  document.getElementById("pickedTime").innerHTML= $('#selecttime').find(":selected").text();
+  document.getElementById("pickedType").innerHTML= typeAppt;
 });
+
+$("#hide-btn").on('submit',function deleteAppointment(index){
+  
+    fetch("/appointment/delete/"+ index, {
+        method: 'DELETE',
+      
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function(res){
+          return res.json();
+      })
+      .then(function (data) {
+        console.log(
+          `STEP 4: Getting Data from the STEP 3 response to the Client promise`
+        );
+        window.location.href = "/appointmentPage";
+      });
+
+});
+
+ 
+        //  $.delete("/appointmentPage/delete", {
+       
+        //   appointments_id: id
+        // });
+        
+    //   }
+
+//     function deleteAppointment(event) {
+//     event.preventDefault();
+//     const id = window.location.toString().split('/')[
+//         window.location.toString().split('/').length - 1
+//       ];
+//       const response = await fetch(`/appointmentPage/${id}`, {
+//         method: 'DELETE',
+//         body: JSON.stringify({
+//           appointments_id: id
+//         }),
+//         headers: {
+//           'Content-Type': 'application/json'
+//         }
+//       });
+//       if (response.ok) {
+//         document.location.replace('/');
+//       } else {
+//         alert(response.statusText);
+//       }
+// }
+// document.querySelector('.delete-post-btn').addEventListener('click', deleteAppointment);

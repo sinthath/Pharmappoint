@@ -104,7 +104,8 @@ router.put('/:id', (req, res) => {
   });
 });
 // Delete an Appointment
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
+  console.log("here at delete")
   Appointment.destroy({
       where: {
           id: req.params.id

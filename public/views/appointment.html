@@ -43,10 +43,10 @@
               <input type = "text" id = "datepicker-1">
             </p>
 
-            <p id="inputdate">
+            <!-- <p id="inputdate">
               <label for="date">Date:(yyyy-mm-dd)</label>
               <input type="text" id="date-input" />
-            </p>
+            </p> -->
         
         <!-- <p>Select Time: <input type="text" id="timepicker"/> </p> -->
 
@@ -65,18 +65,15 @@
           </form>
     
       <section class="booked" >
-          <h2>Your Booked Appointment: <span id="pickedDate"></span></h2>
+        <form class="delete-booking">
+          <h2 id="bookingInfo">Your Booked Appointment: <span id="pickedDate"></span>
+          <span id="pickedTime"></span> 
+          <span id="pickedType"></span></h2>
+          <button type="button" class="delete-post-btn" id = "hide-btn">Delete 
+        </form>
             
-            <ul class="hide">
-              
-              <li class="type-appt">
-                <p class="date-appt"></p>
-                <p class="time-appt"></p>
-                 
-                  
-              </li>
-             
-            </ul>
+            
+          
       </section>
     
 
