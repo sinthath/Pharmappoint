@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>PharmAppoint Home</title>
 </head>
 
@@ -15,21 +15,23 @@
 
       <nav>
      
-        <a href="./adminlogin.html">Admin</a>
+        <a href="./view/adminlogin.html">Admin</a>
         
       </nav>
     </header>
       
     
     <main>
-        <section>
+      <!---->
+        <!-- <section>
 
-            <a href="/login">Sign in </a>
+            <a href="./view/createuserlogin.html">Sign in </a>
         </section>
+        <> -->
 
         <form class="userlogin-form">
           <div>
-            <label for="username-login">username:</label>
+            <label for="username-login">Email:</label>
             <input type="text" id="username-login" />
           </div>
           <div>
@@ -42,12 +44,12 @@
         </form>
         <section>
 
-            <a href="./reset.html">Forgot Password/Username</a>
+            <a href="./views/reset.html">Forgot Password/Username</a>
         </section>
 
         <section>
 
-          <a href="./createuserlogin.html">Create a New Account</a>
+          <a href="./views/createuserlogin.html">Create a New Account</a>
       </section>
       
     </main>
@@ -56,8 +58,9 @@
     </footer>
   </div>
   
- 
-  <script src="/javascript/userlogin.js"></script>
+ <!--update the script file-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" src="./assets/js/login.js"></script>
 
 </body>
 

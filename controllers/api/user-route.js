@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models'); 
 
-
 // get all users
 router.get('/', (req, res) => {
     User.findAll({
@@ -36,10 +35,10 @@ router.get('/:id', (req, res) => {
 });
 
 // Create a new user
-router.post('/', (req, res) => {
+router.post("/signUp", (req, res) => {
+  
   User.create({
-    username: req.body.username,
-    password: req.body.password,
+    password: req.session.password,
     email: req.body.email,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -48,10 +47,11 @@ router.post('/', (req, res) => {
     .then(dbUserData => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
+        
         req.session.email = dbUserData.email;
         req.session.firstname = dbUserData.firstname;
         req.session.lastname = dbUserData.lastname;
+        req.session.password = dbUserData.password;
         req.session.loggedIn = true;
 
         res.json(dbUserData);
@@ -65,52 +65,38 @@ router.post('/', (req, res) => {
 });
 
 // Login route 
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
+  console.log(req.body)
   User.findOne({
-      attributes: { exclude: ['password'] },
-      where: {
-          id: req.params.id 
-      }
-  })
-  .then(dbUserData => {
-      if (!dbUserData) {
-          res.status(404).json({ message: 'User not found' });
-          return;
-      }
-      res.json(dbUserData);
-  })
-  .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+    where: {
+      email: req.body.email
+    }
+  }).then(dbUserData => {
+    if (!dbUserData) {
+      res.status(400).json({ message: 'No user with that email address!' });
+      return;
+    }
+    console.log(dbUserData)
+    var validPassword;
+    if (req.body.password === dbUserData.dataValues.password){
+      validPassword = true;
+    }else{
+      validPassword = false;
+    }
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
   });
-});
-
-router.post('/', (req, res) => {
-
-  User.create({
-      username: req.body.username,
-      password: req.body.password,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-  }) //create a new user in teh db saving their user and password
-
-  .then(dbUserData => {
-          req.session.save(() => {
-              req.session.user_id = dbUserData.id; //session id = user ID
-              req.session.username = dbUserData.username; //session username = db username
-              req.session.email = dbUserData.email;
-              req.session.firstname = dbUserData.firstname;
-              req.session.lastname = dbUserData.lastname;
-              req.session.loggedIn = true; //set them to formally logged in
-
-              res.json(dbUserData); //parses db user into json
-          });
-      })
-      .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-      });
-
 });
 
 // Logout Route

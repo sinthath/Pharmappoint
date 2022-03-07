@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PharmAppoint</title>
+  
+
+  
+  <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+       rel = "stylesheet">
+  
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+</head>
+<body>
+ 
+  <div class="wrapper">
+    <header>
+      <h1>PharmAppoint</h1>
+
+      <nav>
+     
+        <a href="./index.html">Logout</a>
+        
+      </nav>
+    </header>
+      <h1>Patient Dashboard</h1>
+        <section class="appt">
+          <h2 > Book an Appointment</h2>
+  
+          <form>
+            <input class="choice" type="radio" id="covidtest" name="appt_type" value="Covid Test">
+            <label for="covidtest">COVID Test</label><br>
+            <input class="choice" type="radio" id="covidshot" name="appt_type" value="Covid Shot">
+            <label  for="covidshot">COVID Shot</label><br>
+            <input class="choice" type="radio" id="flushot" name="appt_type" value="Flu Shot">
+            <label  for="flushot">FLU Shot</label>
+  
+      
+          <h3 >Appointment Date & Time:</h3>
+            <p>SelectDate: 
+              <input type = "text" id = "datepicker-1">
+            </p>
+
+            <!-- <p id="inputdate">
+              <label for="date">Date:(yyyy-mm-dd)</label>
+              <input type="text" id="date-input" />
+            </p> -->
+        
+        <!-- <p>Select Time: <input type="text" id="timepicker"/> </p> -->
+
+            <p>Select Time: <select id="selecttime" name="availabletime">
+              <option value="1">10:00 </option>
+              <option value="2">11:00</option>
+              <option value="3">12:00</option>
+              <option value="4">13:00</option>
+              <option value="5">14:00</option>
+              <option value="6">15:00</option>
+              <option value="7">16:00</option>
+            </select></p>
+
+            <button type="submit" class="btn" id="crtAppt">Submit</button>
+      
+          </form>
+    
+      <section class="booked" >
+        <form class="delete-booking">
+          <h2 id="bookingInfo">Your Booked Appointment: <span id="pickedDate"></span>
+          <span id="pickedTime"></span> 
+          <span id="pickedType"></span></h2>
+          <button type="button" class="delete-post-btn" id = "hide-btn">Delete 
+        </form>
+            
+            
+          
+      </section>
+    
+
+  </div>
+
+  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  
+  
+
+<script src="../assets/js/calendar.js">
+</script>
+</body>
+</html>

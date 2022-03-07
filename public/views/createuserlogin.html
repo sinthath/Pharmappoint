@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <title>PharmAppoint Create User</title>
 </head>
 <body>
@@ -22,10 +22,6 @@
   <form id="signup-form">
     <!-- using user model -->
     <div>
-      <label for="username-signup">Username:</label>
-      <input type="text" id="username-signup" />
-    </div>
-    <div>
       <label for="email-signup">Email:</label>
       <input type="email" id="email-signup" />
     </div>
@@ -42,7 +38,7 @@
       <input type="text" id="lastname-signup" />
     </div>
     <!-- security questions -->
-    <div>
+    <!-- <div>
       <label for="security-signup">What city were you born?:</label>
       <input type="text" id="question1-signup" />
     </div>
@@ -53,14 +49,14 @@
     <div>
       <label for="security-signup">What is your make of your first car?</label>
       <input type="text" id="question3-signup" />
-    </div>
+    </div> -->
     <div>
-      <button type="submit">signup</button>
+      <button id="signupButton" type="submit">signup</button>
     </div>
   </form>
 </main>
 </div>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/signup.js"></script>
 </body>
 </html>
